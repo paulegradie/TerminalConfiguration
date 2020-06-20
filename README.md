@@ -51,4 +51,16 @@ Lastly, you need customize the `Oh-My-Posh` theme. I've customized the AgnosticS
 
 ## Git Bash
 
-My git bash setup is a little complicated since
+My git bash setup relies on having `~/.bashrc` and `~/.bash_profile` located in the home directory. These will each reference the version found in `.SettingsAndConfigurations`. e.g.:
+
+// ~/.bashrc
+
+    #!/usr/bin/env bash
+    source .SettingsAndConfigurations/GitBash/.bash_profile
+
+// and ~/.bash_profile
+
+    #!/usr/bin/env bash
+    source ./.SettingsAndConfigurations/GitBash/.bash_profile
+
+With these ceated, everything should work.
