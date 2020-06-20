@@ -1,0 +1,79 @@
+# ______________________________________COMMON_________________________________________ #
+
+#alias -='cd -'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# cli aliases
+alias la='ls -lath'
+alias lsa='ls -lath'
+
+# git aliases
+alias gco='git checkout'
+alias gst='git status'
+alias gp='git pull'
+alias gb='git branch'
+alias gbr='git branch -r'
+alias gpo='git push origin'
+alias gcm='git commit -m'
+alias gau='git add -u'
+
+alias clearhost='rm ~/.ssh/known_hosts'
+
+# ssh add
+alias sadd='sh ~/.setup_scripts/add_ids.sh'
+
+# Programspyenv
+alias py="ipython"
+
+
+# ______________________________________SPECIFIC_________________________________________ #
+
+if [[ "$OSTYPE" == "msys" ]]; then  # Windows aliases
+    echo "Setting aliases for a windows machine..."
+    host=$(hostname)
+
+    if [[ $host == "DESKTOP-TMVOCH8" ]]; then  # work computer
+        echo "Setting aliases for ${host}"
+        # Personal
+        alias board='cd "${HOME}/Documents/code/projects/dashboard"'
+        alias conv='cd "/c/Users/paule/Documents/code/projects/ConvoBuilder"'
+        alias port='cd "/c/Users/paule/Documents/code/projects/ConvoBuilder/dashboard/portal"'
+
+        # Work
+        alias od='cd "/c/Users/paule/Documents/code/octopus/OctopusDeploy"'
+        alias oct='cd "/c/Users/paule/Documents/code/octopus/"'
+        alias portal='cd "/c/Users/paule/Documents/code/octopus/OctopusDeploy/newportal"'
+        alias bouncer="ServiceBouncer.exe"
+        alias prep="npm i --no-save"
+
+        alias aws='awslocal'
+
+
+
+    elif [[ $host == "RegEx" ]]; then
+        # nav aliases
+        echo "Setting aliases for ${host}"
+        alias sol='cd "/c/Users/paule/My Documents/GradieML/Contracts/SoLegal_Master/SoLegal"'
+        alias gml='cd "/c/Users/paule/My Documents/GradieML"'
+        alias tjb='cd "/c/Users/paule/My Documents/GradieML/applications/TheJadeBot"'
+        alias cook='cd "/c/Users/paule/code/ReactStudy/ReactProjects/Cookbook"'
+        alias art='cd "/c/Users/paule/code/ReactStudy/ReactProjects/Artwork/artwork_gen/python-src"'
+        alias act='poetry shell'
+        alias gan='cd "/c/Users/paule/code/ReactStudy/ReactProjects/Artwork/nvidia/gans/gans"'
+        alias you='cd "/c/Users/paule/Documents/code/Youtube/Standard Library Series/Videos/modules"'
+    fi
+
+    # open
+    alias idea="/Applications/IntelliJ\ IDEA\ CE.app/Contents/MacOS/idea"
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then     # Mac OSX
+
+    # permissions
+    alias please='sudo'
+    alias restart='exec bash'
+fi
+
+

@@ -1,0 +1,80 @@
+#!/bin/bash
+
+csv ()
+{
+    echo "Displaying "$1;
+    column -s, -t < $1 | less -#5 -N -S;
+}
+
+
+polynote ()
+{
+    echo "Navigating to main polynote directory..."
+    cd code/polynote_main
+
+    echo  "Activating polynote env..."
+    pipenv shell
+
+    echo "Entering polynote app directory..."
+    cd polynote
+
+    echo "Starting polynote notebook..."
+    python polynote.py
+}
+
+
+clear_branches () {
+    for branch in $(git branch | grep "g/");
+        do
+		echo ${branch};
+		read varname;
+		if [[ $varname  == 'y' ]];
+		then
+   			echo $varname;
+			git branch -D ${branch};
+		fi;
+	done
+}
+
+
+path () {
+    IN=$(echo $PATH)
+        IFS=':' read -ra ADDR <<< "$IN"
+    for i in "${ADDR[@]}"; do
+        echo "$i"
+    done
+}
+
+
+clone () {
+
+    gml="gihub.com-gradieml"
+    peg="github.com-paulegradie"
+
+    originalstring=${1}
+    itemtoreplace="github.com"
+
+    if [[ ${2} == "octo" ]];
+    then
+        echo "Cloning from Octopus Deploy"
+        newhost=${originalstring/$itemtoreplace/$peg}
+        git clone ${newhost}
+
+    elif [[ ${2} == "peg" ]];
+    then
+        echo "Cloning from paulegradie"
+        newhost=${originalstring/$itemtoreplace/$peg}
+        git clone ${newhost}
+
+    elif [[ ${2} == "gml" ]];
+    then
+        echo "Cloning from gradieml"
+        newhost=${originalstring/$itemtoreplace/$gml}
+        git clone ${newhost}
+    else
+        echo "Usage: clone {repo-link} suffix"
+        echo "Suffix one of [octo, peg, or gml"
+        echo ""
+        echo "e.g. clone git@github.com:paulegradie/SeqPyPlot.git peg"
+    fi
+}
