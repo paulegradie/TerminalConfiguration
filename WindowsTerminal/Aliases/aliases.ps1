@@ -37,7 +37,10 @@ function conv { Set-Location "$USER\Documents\code\projects\ConvoBuilder"}
 function port { Set-Location "$USER\Documents\code\projects\ConvoBuilder\dashboard\portal"}
 function dcf {Set-Location "$USER\Documents\code\projects\Dashboard-Configuration-Frontend"}
 
+
+
 ############ utilities
+function settings {set-location ${USER}\.SettingsAndConfigurations\}
 function prof { code $PROFILE.CurrentUserAllHosts}
 function ls {$(Get-ChildItem $args[0]).Name}
 function lsa {$(Get-ChildItem $args[0])}

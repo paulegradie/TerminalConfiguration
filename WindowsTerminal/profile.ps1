@@ -23,7 +23,14 @@ $USER = $env:USERPROFILE;
 
 Import-Module posh-git
 Import-Module oh-my-posh
-Set-Theme AgnosterSlim
+Set-Theme Agnocto
+
+if($env:COMPUTERNAME -eq "RegEx") {
+    Set-Location D:\code
+} else {
+    Set-Location ${USER}/Documents/code
+}
+
 
 ### Other available default themes you can choose from!
 # Set-Theme Agnoster

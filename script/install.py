@@ -26,6 +26,10 @@ def increment(oldpath):
         newpath = oldpath.replace(oldsuffix, newsuffix)
         return newpath
 
+content = [
+    """# Should simply source the content of ./SettingsAndConfigurations/WindowsTerminal/profle.ps1""",
+    """$USER = $env:USERPROFILE;. $USER\.SettingsAndConfigurations\WindowsTerminal\profile.ps1"""
+]
 if sys.platform == 'win32': # windows machine
     if exists(WINDOWS_CURRENTUSER_POWERSHELL_PROFILE):
         newfile = join(HOME, DIR, 'profile.ps1.bkup')
@@ -35,9 +39,9 @@ if sys.platform == 'win32': # windows machine
             newfile = increment(newfile)
             rename(WINDOWS_CURRENTUSER_POWERSHELL_PROFILE, newfile)
 
-        content = """# Should simply source the content of ./SettingsAndConfigurations/WindowsTerminal/profle.ps1/n$USER = $env:USERPROFILE;. $USER\.SettingsAndConfigurations\WindowsTerminal\profile.ps1"""
-        with open(WINDOWS_CURRENTUSER_POWERSHELL_PROFILE, 'w') as fout:
-            fout.write(content)
+    with open(WINDOWS_CURRENTUSER_POWERSHELL_PROFILE, 'w') as fout:
+        for line in content:
+            fout.write(line)
 
 else:
     print(f"Current platform: {sys.platform} not supported for auto install.")
