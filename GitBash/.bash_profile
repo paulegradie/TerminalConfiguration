@@ -145,3 +145,11 @@ echo "Trying to set poetry virtualenv.in-project to true..."
 poetry config virtualenvs.in-project true
 echo ""
 echo "Bash Profile successfully sourced"
+
+if [[ $host == "DESKTOP-TMVOCH8" ]]; then  # work computer
+  cd ~/Documents/code
+fi
+
+if [[ $host == "RegEx" ]]; then  # work computer
+  cd D:/code
+fi
