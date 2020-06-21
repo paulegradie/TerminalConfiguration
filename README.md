@@ -6,10 +6,16 @@ Hello! This is a repository to hold all of my custom settings and configurations
 
 This installation is currently very dumb and will simply overwrite any settings you have in place with the same file. (This applies mainly to git bash at this time).
 
-    1. git clone git@github.com:paulegradie/SettingsAndConfigurations.git .SettingsAndConfiguration
-    2. ./.SettingsAndConfiguration/script/install.py
+**Windows**
 
-This install script is a system agnostic python script that will call either a .bat or a .bash depending on which system you're on. (NYI)
+    # Run the following in powershell to install in your home directory
+    $USER = $env:USERPROFILE;
+    git clone git clone git@github.com:paulegradie/SettingsAndConfigurations.git $USER/.SettingsAndConfiguration
+    python $USER/.SettingsAndConfiguration/script/install.py
+
+**Other**
+
+TBD
 
 ## Windows Terminal
 
