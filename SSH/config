@@ -1,0 +1,25 @@
+# Instructions:
+# ---------------------------------------------
+# the way this works is that you have to use the Host value with the ssh call
+# Host="github.com-paulegradie"
+# git clone git@${Host}:paulegradie/SeqPyPlot.git
+
+# The default here is github.com - this is what comes with the copy/paste from github when you click
+# the clone or download button.
+# ----------------------------------------------
+
+Host *
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+	TCPKeepAlive yes
+
+Host github.com-paulegradie
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/paulegradie_id_rsa
+
+Host github.com-gradieml
+	HostName github.com
+	User git
+	#IdentityFile ~/.ssh/gradieml_id_rsa
+
