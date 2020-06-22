@@ -1,5 +1,7 @@
 $DDRIVE = "D:\"
 
+function home {Set-Location "$DDRIVE"}
+
 ######### Octopus location aliases #############
 function od { Set-Location "$DDRIVE\code\octopus\OctopusDeploy" }
 function portal { Set-Location "$DDRIVE\code\octopus\OctopusDeploy\newportal" }
