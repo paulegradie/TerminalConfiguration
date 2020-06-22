@@ -48,7 +48,7 @@ path () {
 
 clone () {
 
-    gml="gihub.com-gradieml"
+    gml="github.com-gradieml"
     peg="github.com-paulegradie"
 
     originalstring=${1}

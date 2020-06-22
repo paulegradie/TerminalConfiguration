@@ -11,8 +11,7 @@ $env:OCTOPUS_CLI_PASSWORD="Password01!"
 $USER = $env:USERPROFILE;
 
 . $USER/.SettingsAndConfigurations/WindowsTerminal/Functions/functions.ps1
-. $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/aliases.ps1
-
+. $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/CommonAliases.ps1
 
 ## POWER LINE FOR AWESOME GIT DETAILS
 # Installation instructions: https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup
@@ -26,9 +25,12 @@ Import-Module oh-my-posh
 Set-Theme Agnocto
 
 if($env:COMPUTERNAME -eq "RegEx") {
-    Set-Location D:\code
+    . $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/DesktopAliases.ps1
+    Set-Location D:/code
 } else {
+    . $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/LaptopAliases.ps1
     Set-Location ${USER}/Documents/code
+
 }
 
 

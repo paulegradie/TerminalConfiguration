@@ -1,5 +1,6 @@
 import sys;
-from os.path import expanduser, join, exists, rename
+from os.path import expanduser, join, exists
+from os import rename
 
 # This script modifies the required files to reference .SettingsAndConfigurations instead of looking
 # in their own paths.
@@ -41,7 +42,7 @@ if sys.platform == 'win32': # windows machine
 
     with open(WINDOWS_CURRENTUSER_POWERSHELL_PROFILE, 'w') as fout:
         for line in content:
-            fout.write(line)
+            fout.write(line + "\n")
 
 else:
     print(f"Current platform: {sys.platform} not supported for auto install.")
