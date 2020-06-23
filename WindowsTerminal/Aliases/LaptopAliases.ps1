@@ -22,6 +22,7 @@ function cli { Set-Location "$USER\Documents\code\octopus\OctopusCLI" }
 
 
 ############# Personal Location Aliases
+function proj { Set-Location "$USER\Documents\code\projects\"}
 function board { Set-Location "$USER\Documents\code\projects\dashboard"}
 function conv { Set-Location "$USER\Documents\code\projects\ConvoBuilder"}
 function port { Set-Location "$USER\Documents\code\projects\ConvoBuilder\dashboard\portal"}

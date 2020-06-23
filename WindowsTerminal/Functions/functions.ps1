@@ -38,7 +38,12 @@ function clone {
     }
 
     $GML = "github.com-gradieml"
-    $PEG = "github.com-desktop"
+
+    if ($env:COMPUERNAME -eq "RegEx") {
+        $PEG = "github.com-desktop"
+    } else {
+        $PEG = "github.com-paulegradie"
+    }
 
     $itemtoreplace = "github.com"
 
