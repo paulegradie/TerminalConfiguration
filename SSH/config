@@ -16,7 +16,7 @@ Host *
 Host github.com-paulegradie
 	HostName github.com
 	User git
-	IdentityFile ~/.ssh/paulegradie_id_rsa
+	IdentityFile ~/.ssh/desktop_id_rsa
 
 Host github.com-gradieml
 	HostName github.com

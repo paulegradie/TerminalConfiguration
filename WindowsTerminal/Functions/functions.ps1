@@ -39,7 +39,8 @@ function clone {
 
     $GML = "github.com-gradieml"
 
-    if ($env:COMPUERNAME -eq "RegEx") {
+    if ($env:COMPUTERNAME -eq "RegEx") {
+        write-host "Compute Name: $env:COMPUTERNAME"
         $PEG = "github.com-desktop"
     } else {
         $PEG = "github.com-paulegradie"
