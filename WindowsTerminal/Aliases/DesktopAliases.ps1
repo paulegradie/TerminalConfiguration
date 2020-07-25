@@ -12,8 +12,8 @@ function cli { Set-Location "$DDRIVE\code\octopus\OctopusCLI" }
 
 
 ############# Personal Location Aliases
-function board { Set-Location "$DDRIVE\code\projects\dashboard"}
-function conv { Set-Location "$DDRIVE\code\projects\ConvoBuilder"}
-function port { Set-Location "$DDRIVE\code\projects\ConvoBuilder\dashboard\portal"}
-function dcf {Set-Location "$DDRIVE\code\projects\Dashboard-Configuration-Frontend"}
+function board { Set-Location "$DDRIVE\code\dashboard"}
+function conv { Set-Location "$DDRIVE\code\ConvoBuilder"}
+function port { Set-Location "$DDRIVE\code\ConvoBuilder\dashboard\portal"}
+function dcf {Set-Location "$DDRIVE\code\Dashboard-Configuration-Frontend"}
 
