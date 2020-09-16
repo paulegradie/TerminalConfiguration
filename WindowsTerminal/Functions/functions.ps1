@@ -41,7 +41,7 @@ function clone {
 
     if ($env:COMPUTERNAME -eq "RegEx") {
         write-host "Compute Name: $env:COMPUTERNAME"
-        $PEG = "github.com-desktop"
+        $PEG = "github.com-paulegradie"
     } else {
         $PEG = "github.com-paulegradie"
     }
