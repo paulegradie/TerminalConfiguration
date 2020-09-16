@@ -42,7 +42,7 @@ function clone {
     if ($env:COMPUTERNAME -eq "RegEx") {
         write-host "Compute Name: $env:COMPUTERNAME"
         $PEG = "github.com-desktop"
-    } elseif ($env:COMPUTERNAME -eq "DESKTOP-IF5NKU4") {
+    } elseif ($env:COMPUTERNAME -eq "DESKTOP-I5FNKU4") {
         $PEG = "github.com-laptop"
     } else {
         write-host "Computer not Recognized.."
