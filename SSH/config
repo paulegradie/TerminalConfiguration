@@ -13,10 +13,15 @@ Host *
     AddKeysToAgent yes
 	TCPKeepAlive yes
 
-Host github.com-paulegradie
+Host github.com-desktop
 	HostName github.com
 	User git
 	IdentityFile ~/.ssh/desktop_id_rsa
+
+Host github.com-laptop
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/laptop_id_rsa
 
 Host github.com-gradieml
 	HostName github.com
