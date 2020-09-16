@@ -44,6 +44,8 @@ function clone {
         $PEG = "github.com-desktop"
     } elseif ($env:COMPUTERNAME -eq "DESKTOP-IF5NKU4") {
         $PEG = "github.com-laptop"
+    } else {
+        write-host "Computer not Recognized.."
     }
 
     $itemtoreplace = "github.com"
