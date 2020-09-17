@@ -1,4 +1,4 @@
-$DDRIVE = "D:\"
+$DDRIVE = "D:"
 
 function home {Set-Location "$DDRIVE"}
 
@@ -12,8 +12,19 @@ function cli { Set-Location "$DDRIVE\code\octopus\OctopusCLI" }
 
 
 ############# Personal Location Aliases
-function board { Set-Location "$DDRIVE\code\dashboard"}
-function conv { Set-Location "$DDRIVE\code\ConvoBuilder"}
-function port { Set-Location "$DDRIVE\code\ConvoBuilder\dashboard\portal"}
-function dcf {Set-Location "$DDRIVE\code\Dashboard-Configuration-Frontend"}
 
+$SERVER = "$DDRIVE\code\palavyr\Configuration-Manager\server";
+$PORT = "$DDRIVE\code\palavyr\Configuration-Manager\frontend";
+$PDF = "$DDRIVE\code\palavyr\Configuration-Manager\pdf-server";
+$MANAGER = "$DDrive\code\palavyr\Configuration-Manager";
+$WIDGET = "$DDrive\code\palavyr\Configuration-Manager\widget";
+
+function serv { Set-Location $SERVER}
+function port { Set-Location $PORT}
+function pdf {Set-Location $PDF}
+function widget {Set-Location $WIDGET}
+function manager {Set-Location $MANAGER}
+
+function startup {
+    wt --title "Palavyr" -d $PORT `; split-pane --title "PDF Service" -d $PDF `; split-pane -H -d $WIDGET
+}

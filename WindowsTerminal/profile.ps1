@@ -26,7 +26,8 @@ Set-Theme Agnocto
 
 if($env:COMPUTERNAME -eq "RegEx") {
     . $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/DesktopAliases.ps1
-    Set-Location D:/code
+    # Set-Location D:/code
+
 } else {
     . $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/LaptopAliases.ps1
     Set-Location ${USER}/Documents/code
