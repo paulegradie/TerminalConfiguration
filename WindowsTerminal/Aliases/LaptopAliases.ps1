@@ -12,19 +12,28 @@ function ...... {Set-Location ../../../../..}
 
 
 ######### Octopus location aliases #############
-set-location "$USER\Documents\code\octopus\OctopusDeploy"
-function od { Set-Location "$USER\Documents\code\octopus\OctopusDeploy" }
-function portal { Set-Location "$USER\Documents\code\octopus\OctopusDeploy\newportal" }
-function oct { Set-Location "$USER\Documents\code\octopus\" }
+set-location "$USER\code\octopus\OctopusDeploy"
+function od { Set-Location "$USER\code\octopus\OctopusDeploy" }
+function portal { Set-Location "$USER\code\octopus\OctopusDeploy\newportal" }
+function oct { Set-Location "$USER\code\octopus\" }
 function bouncer { ServiceBouncer.exe }
 function prep { npm i --no-save }
-function cli { Set-Location "$USER\Documents\code\octopus\OctopusCLI" }
+function cli { Set-Location "$USER\code\octopus\OctopusCLI" }
 
 
 ############# Personal Location Aliases
-function proj { Set-Location "$USER\Documents\code\projects\"}
-function board { Set-Location "$USER\Documents\code\projects\dashboard"}
-function conv { Set-Location "$USER\Documents\code\projects\ConvoBuilder"}
-function port { Set-Location "$USER\Documents\code\projects\ConvoBuilder\dashboard\portal"}
-function dcf {Set-Location "$USER\Documents\code\projects\Dashboard-Configuration-Frontend"}
+$SERVER = "$USER\code\palavyr\Configuration-Manager\server";
+$PORT = "$USER\code\palavyr\Configuration-Manager\frontend";
+$PDF = "$USER\code\palavyr\Configuration-Manager\pdf-server";
+$MANAGER = "$USER\code\palavyr\Configuration-Manager";
+$WIDGET = "$USER\code\palavyr\Configuration-Manager\widget";
 
+function serv { Set-Location $SERVER}
+function port { Set-Location $PORT}
+function pdf {Set-Location $PDF}
+function widget {Set-Location $WIDGET}
+function manager {Set-Location $MANAGER}
+
+function startup {
+    wt --title "Palavyr" -d $PORT `; split-pane --title "PDF Service" -d $PDF `; split-pane -H -d $WIDGET
+}

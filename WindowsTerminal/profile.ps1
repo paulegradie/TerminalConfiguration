@@ -30,8 +30,7 @@ if($env:COMPUTERNAME -eq "RegEx") {
 
 } else {
     . $USER/.SettingsAndConfigurations/WindowsTerminal/Aliases/LaptopAliases.ps1
-    Set-Location ${USER}/Documents/code
-
+    Set-Location ${USER}/code
 }
 
 
