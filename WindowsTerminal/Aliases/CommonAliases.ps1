@@ -1,10 +1,20 @@
 ## Remove unwanted powershell aliases
-Remove-Alias -Name gcm -Force
-Remove-Alias -Name ls -Force
-Remove-Alias -Name gp -Force
-Remove-Alias -Name cli -Force
-Remove-Alias -Name rm -Force
-Remove-Alias -Name sl -Force
+try {
+    Remove-Alias -Name gcm -Force
+    Remove-Alias -Name ls -Force
+    Remove-Alias -Name gp -Force
+    Remove-Alias -Name cli -Force
+    Remove-Alias -Name rm -Force
+    Remove-Alias -Name sl -Force
+} catch {
+    If (Test-Path Alias:gcm) {Remove-Item Alias:gcm -Force}
+    If (Test-Path Alias:ls) {Remove-Item Alias:ls -Force}
+    If (Test-Path Alias:gp) {Remove-Item Alias:gp -Force}
+    If (Test-Path Alias:cli) {Remove-Item Alias:cli -Force}
+    If (Test-Path Alias:rm) {Remove-Item Alias:rm -Force}
+    If (Test-Path Alias:sl) {Remove-Item Alias:sl -Force}
+
+}
 
 ############ utilities
 function settings {set-location ${USER}\.SettingsAndConfigurations\}
