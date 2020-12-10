@@ -53,5 +53,5 @@ function gst {git status}
 function gp {git pull}
 function gb {git branch}
 function gbr {git branch -r}
-function gcm {git commit -m "$args[0]"}
+function gcm {git commit -m "$args"}
 function gau {git add -u}
