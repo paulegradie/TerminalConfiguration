@@ -4,9 +4,9 @@
 # https://mathieubuisson.github.io/powershell-linux-bash/
 
 ###### Some Development Only Environment Variables Std #############
-$env:OCTOPUS_CLI_SERVER="http://localhost:8065"
-$env:OCTOPUS_CLI_USERNAME="Admin"
-$env:OCTOPUS_CLI_PASSWORD="Password01!"
+# $env:OCTOPUS_CLI_SERVER="http://localhost:8065"
+# $env:OCTOPUS_CLI_USERNAME="Admin"
+# $env:OCTOPUS_CLI_PASSWORD="Password01!"
 
 $USER = $env:USERPROFILE;
 
