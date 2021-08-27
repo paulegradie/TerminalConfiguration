@@ -4,11 +4,11 @@
 $USER = $env:USERPROFILE;
 
 ###### General Nav Helpers ##########
-function .. {Set-Location ..}
-function ... {Set-Location ../..}
-function .... {Set-Location ../../..}
-function ..... {Set-Location ../../../..}
-function ...... {Set-Location ../../../../..}
+function .. { Set-Location .. }
+function ... { Set-Location ../.. }
+function .... { Set-Location ../../.. }
+function ..... { Set-Location ../../../.. }
+function ...... { Set-Location ../../../../.. }
 
 
 ######### Octopus location aliases #############
@@ -27,13 +27,13 @@ $PORT = "$USER\code\palavyr\Configuration-Manager\frontend";
 $PDF = "$USER\code\palavyr\Configuration-Manager\pdf-server";
 $MANAGER = "$USER\code\palavyr\Configuration-Manager";
 $WIDGET = "$USER\code\palavyr\Configuration-Manager\widget";
-
-function serv { Set-Location $SERVER}
-function port { Set-Location $PORT}
-function pdf {Set-Location $PDF}
-function widget {Set-Location $WIDGET}
-function manager {Set-Location $MANAGER}
-
+$DESIGN = "$USER\code\KayKayArt\KayKayDesign"
+function serv { Set-Location $SERVER }
+function port { Set-Location $PORT }
+function pdf { Set-Location $PDF }
+function widget { Set-Location $WIDGET }
+function manager { Set-Location $MANAGER }
+function design { Set-Location $DESIGN }
 function startup {
     wt --title "Palavyr" -d $PORT `; split-pane --title "PDF Service" -d $PDF `; split-pane -H -d $WIDGET
 }
