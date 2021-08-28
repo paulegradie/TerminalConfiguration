@@ -28,12 +28,16 @@ $PDF = "$USER\code\palavyr\Configuration-Manager\pdf-server";
 $MANAGER = "$USER\code\palavyr\Configuration-Manager";
 $WIDGET = "$USER\code\palavyr\Configuration-Manager\widget";
 $DESIGN = "$USER\code\KayKayArt\KayKayDesign"
+$ALI = "$USER\code\Aliqapu";
+
 function serv { Set-Location $SERVER }
 function port { Set-Location $PORT }
 function pdf { Set-Location $PDF }
 function widget { Set-Location $WIDGET }
 function manager { Set-Location $MANAGER }
 function design { Set-Location $DESIGN }
+function ali { Set-Location $ALI }
+
 function startup {
     wt --title "Palavyr" -d $PORT `; split-pane --title "PDF Service" -d $PDF `; split-pane -H -d $WIDGET
 }
