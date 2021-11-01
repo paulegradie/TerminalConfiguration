@@ -23,10 +23,10 @@ function cli { Set-Location "$USER\code\octopus\OctopusCLI" }
 
 ############# Personal Location Aliases
 $SERVER = "$USER\code\palavyr\Configuration-Manager\server";
-$PORT = "$USER\code\palavyr\Configuration-Manager\frontend";
-$PDF = "$USER\code\palavyr\Configuration-Manager\pdf-server";
+$PORT = "$USER\code\palavyr\Configuration-Manager\ui";
+$PDF = "$USER\code\palavyr\PalavyrPdfServer\";
 $MANAGER = "$USER\code\palavyr\Configuration-Manager";
-$WIDGET = "$USER\code\palavyr\Configuration-Manager\widget";
+$WIDGET = "$USER\code\palavyr\Configuration-Manager\ui";
 $DESIGN = "$USER\code\KayKayArt\KayKayDesign"
 $ALI = "$USER\code\Aliqapu";
 
