@@ -70,3 +70,8 @@ function clone {
     }
 
 }
+
+
+function makeMyLifeSimpler ([string]$arg) {
+    Write-Host [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($arg));
+}
