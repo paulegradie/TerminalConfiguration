@@ -30,7 +30,7 @@ $WIDGET = "$USER\code\palavyr\Palavyr\ui";
 $DESIGN = "$USER\code\KayKayArt\KayKayDesign"
 $ALI = "$USER\code\Aliqapu";
 $ROOF = "$USER\code\jojo-roof-website";
-$FRAME = "$USER\code\Palavyr-IFrame-Widget";
+$FRAME = "$USER\code\palavyr-chat-widget";
 
 
 function serv { Set-Location $SERVER }
