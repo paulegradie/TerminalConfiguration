@@ -2,11 +2,12 @@ $USER = $env:USERPROFILE;
 
 function refresh {
 
-    if($env:COMPUTERNAME -eq "RegEx") {
+    if ($env:COMPUTERNAME -eq "RegEx") {
         $Location1 = "$USER\Documents\code\octopus\OctopusDeploy"
         $Location2 = "$USER\Documents\code\octopus\OctopusDeploy\newportal"
     }
-    else { # laptop
+    else {
+        # laptop
         $Location1 = "D:\code\octopus\OctopusDeploy"
         $Location2 = "D:\code\octopus\OctopusDeployt\newportal"
     }
@@ -33,7 +34,8 @@ function clone {
     $KEY = $args[1]
     if (!$REPO) {
         Usage
-    } elseif (!$KEY) {
+    }
+    elseif (!$KEY) {
         Usage
     }
 
@@ -42,9 +44,11 @@ function clone {
     if ($env:COMPUTERNAME -eq "RegEx") {
         write-host "Compute Name: $env:COMPUTERNAME"
         $PEG = "github.com-desktop"
-    } elseif ($env:COMPUTERNAME -eq "DESKTOP-I5FNKU4") {
+    }
+    elseif ($env:COMPUTERNAME -eq "DESKTOP-I5FNKU4") {
         $PEG = "github.com-laptop"
-    } else {
+    }
+    else {
         write-host "Computer not Recognized.."
     }
 
@@ -55,17 +59,21 @@ function clone {
         $newhost = $REPO -replace $itemtoreplace, $PEG
         git clone $newhost
 
-    } elseif ($KEY -eq "peg") {
+    }
+    elseif ($KEY -eq "peg") {
         Write-Host "Cloning using desktop ssh key for paul.e.gradie"
+        Write-Host $REPO
         $newhost = $REPO -replace $itemtoreplace, $PEG
+        Write-Host $newhost
         git clone $newhost
 
-    } elseif ($KEY -eq "gml") {
+    }
+    elseif ($KEY -eq "gml") {
         Write-Host "Cloning using desktop ssh key for gradie.machine.learning"
         $newhost = $REPO -replace $itemtoreplace, $GML
         git clone $newhost
-
-    } else {
+    }
+    else {
         Usage
     }
 

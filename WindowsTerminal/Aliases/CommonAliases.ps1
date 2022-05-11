@@ -41,6 +41,12 @@ function gpo {
     git push origin "$branch"
 }
 
+function gpfo {
+    $branch = $args[0]
+    git push -f origin "$branch"
+
+}
+
 function gbd {
     git branch -d $args[0]
 }
