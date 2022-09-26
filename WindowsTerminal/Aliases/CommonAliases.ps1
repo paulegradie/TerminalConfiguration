@@ -47,6 +47,28 @@ function gpfo {
 
 }
 
+function gpwr {
+    $branch = $args[0]
+
+    if ($branch -eq "")
+    {
+        throw new Error("No branch provided.")
+    }
+
+    if ($branch.ToString().StartsWith("release"))
+    {
+
+    }
+
+    gco master
+    git pull
+    git checkout $branch
+    git rebase master
+    git push origin "$branch"
+}
+
+
+
 function gbd {
     git branch -d $args[0]
 }

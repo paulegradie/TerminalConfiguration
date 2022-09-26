@@ -24,14 +24,10 @@ function cli { Set-Location "$USER\code\octopus\OctopusCLI" }
 ############# Personal Location Aliases
 $SERVER = "$USER\code\palavyr\Palavyr\server";
 $PORT = "$USER\code\palavyr\Palavyr\ui";
-$PDF = "$USER\code\palavyr\PalavyrPdfServer\";
-$MANAGER = "$USER\code\palavyr\Palavyr";
-$WIDGET = "$USER\code\palavyr\Palavyr\ui";
-$DESIGN = "$USER\code\KayKayArt\KayKayDesign"
-$ALI = "$USER\code\Aliqapu";
-$ROOF = "$USER\code\jojo-roof-website";
+$PDF = "$USER\code\palavyr\palavyr-pdf-server";
 $FRAME = "$USER\code\palavyr-chat-widget";
 $WEBSITE = "$USER\code\palavyr\Palavyr-Website";
+$SAILFISH = "$USER\code\ProjectSailfish\Sailfish";
 
 function serv { Set-Location $SERVER }
 function port { Set-Location $PORT }
@@ -43,6 +39,7 @@ function ali { Set-Location $ALI }
 function roof { Set-Location $ROOF; code .; npm run dev }
 function frame { Set-Location $FRAME }
 function web { Set-Location $WEBSITE }
+function sail { Set-Location $SAILFISH }
 
 function startup {
     wt --title "Palavyr" -d $PORT `; split-pane --title "PDF Service" -d $PDF `; split-pane -H -d $WIDGET
