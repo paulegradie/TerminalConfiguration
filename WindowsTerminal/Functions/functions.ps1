@@ -21,65 +21,6 @@ function refresh {
 }
 
 
-function Usage {
-    Write-Host "Usage: clone {repo-link} [suffix]"
-    Write-Host "Suffix one of [octo, peg, or gml]"
-    Write-Host ""
-    Write-Host "e.g. clone git@github.com:paulegradie/SeqPyPlot.git peg"
-}
-
-function clone {
-
-    $REPO = $args[0]
-    $KEY = $args[1]
-    if (!$REPO) {
-        Usage
-    }
-    elseif (!$KEY) {
-        Usage
-    }
-
-    $GML = "github.com-gradieml"
-
-    if ($env:COMPUTERNAME -eq "RegEx") {
-        write-host "Compute Name: $env:COMPUTERNAME"
-        $PEG = "github.com-desktop"
-    }
-    elseif ($env:COMPUTERNAME -eq "DESKTOP-I5FNKU4") {
-        $PEG = "github.com-laptop"
-    }
-    else {
-        write-host "Computer not Recognized.."
-    }
-
-    $itemtoreplace = "github.com"
-
-    if ($KEY -eq "octo") {
-        Write-Host "Cloning using desktop ssh key for paul.e.gradie"
-        $newhost = $REPO -replace $itemtoreplace, $PEG
-        git clone $newhost
-
-    }
-    elseif ($KEY -eq "peg") {
-        Write-Host "Cloning using desktop ssh key for paul.e.gradie"
-        Write-Host $REPO
-        $newhost = $REPO -replace $itemtoreplace, $PEG
-        Write-Host $newhost
-        git clone $newhost
-
-    }
-    elseif ($KEY -eq "gml") {
-        Write-Host "Cloning using desktop ssh key for gradie.machine.learning"
-        $newhost = $REPO -replace $itemtoreplace, $GML
-        git clone $newhost
-    }
-    else {
-        Usage
-    }
-
-}
-
-
-function makeMyLifeSimpler ([string]$arg) {
+function fromBase64String ([string]$arg) {
     Write-Host [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($arg));
 }

@@ -1,63 +1,74 @@
 # SettingsAndConfigurations
 
-Hello! This is a repository to hold all of my custom settings and configurations for various IDEs, projects (when standard) and terminals. Each of the sections below explain my current settings & configs.
+This repository holds my powershell and bash profiles.
 
-# Installation (script is WIP)
 
-This installation is currently very dumb and will simply overwrite any settings you have in place with the same file. (This applies mainly to git bash at this time).
+## Windows Installation
 
-**Windows**
+1. [Install Git for Windows](https://gitforwindows.org/)
 
-    # Run the following in powershell to install in your home directory
-    $USER = $env:USERPROFILE;
-    git clone git clone git@github.com:paulegradie/SettingsAndConfigurations.git $USER/.SettingsAndConfiguration
-    python $USER/.SettingsAndConfiguration/script/install.py
+2. [Install VS Code](https://code.visualstudio.com/docs/?dv=win)
 
-**Other**
+3. [Create a new SSH Key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
-TBD
+```
+    ssh-keygen -t ed25519 -C "your_email@example.com"
+    # Paste your .pub key into the github settings ssh secrets
+```
+4. Create a `~/.ssh` directory and add a `config` file with contents using vs code
 
-## Windows Terminal
+```bash
+    cd ~
+    mkdir .ssh
+    code .ssh/config
+```
 
-To set up windows terminal with custom prompt themeing and git support, you'll need to install [Oh-My-Posh](https://github.com/JanDeDobbeleer/oh-my-posh) and [Posh-Git](https://github.com/dahlbyk/posh-git). This will give you the sweet command line prompt styling and it comes with several predesigned themes that you can choose from.
+5. Paste the following
+```
+    Host *
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+	TCPKeepAlive yes
 
-I've taken the AgnosticSlim theme and slightly modify to my liking - which includes adding in an octopus icon when elevated privelages are set (i.e. Run as Administrator).
+    Host github.com
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/{key_name}_id_rsa
+```
 
-#### Octopus Deploy Custom Font
+6. Clone this settings repository
 
-![Octopus](./WindowsTerminal/images/themeExample.png)
+```bash
+$USER = $env:USERPROFILE;
+git clone git@github.com:paulegradie/SettingsAndConfigurations.git $USER/.SettingsAndConfiguration
+```
 
-To enable this octopus icon, you'll need to install a custom font which has the octopus icon assigned to one of the font's hex values (e.g. 0x80). You can use the font I've provided under `FontWithOctopusDeployIcon`, or you can create your own:
+7. [Install Oh-My-Posh](https://ohmyposh.dev/docs/installation/windows) (via the Windows Store)
 
-1. Download CascadiaCodePLOctomized.tff
-2. Double click and install.
-3. Take note of the font name in the install window, you'll need this for the terminal settings.
 
-If you don't like the CascadiaCode base font, you are free to customize another font. However, to keep the theme working for `Posh-Git`, you are currently a bit limited to using either CascadiaCode or CascadiaCodePL (since it has the pipe symbols required for git) -- feel free to explore this... there may be other fonts that support git, but I haven't looked into it.
+8. Set your execution privelages (Run As Admin plz)
 
-Once you have the font installed, you just need to specify it in the `settings.json` for Windows Terminal. In the `WindowsTerminal` directory, you'll find the `settings.json` file that I use. To access your file, you can open Windows Terminal and press (Cntl + ,) or use:
+    `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm`
 
-![settings](./WindowsTerminal/images/accessSettings.png)
+9. Install Posh-Git
 
-I've uploaded the `WindowsTerminal/settings.json` that I use with the above font installed and specified for Powershell (not Windows Powershell, or Azure Cloud Shell, or Command Prompt). You can see how each shell type supported by Windows Terminal is specified in an array in the json file. Feel free to copy this file and customize it to your liking -- or simply customize the one you already have.
 
-If you are wondering where this file is, its probably located a path similar to:
+    `PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force`
 
-    %USERPROFILE%\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+    OR
 
-You can also find this file when opening it from Windows Terminal.
+    `choco install poshgit`
 
-#### Setting the theme in your profile
+10. Install your favorite [NerdFont](https://www.nerdfonts.com/font-downloads) to get access to all the symbols used in the Oh-My-Posh themes ( you may need to go to your windows > Settings > Fonts - and install there)
 
-Lastly, you need customize the `Oh-My-Posh` theme. I've customized the AgnosticSlim theme an renamed it `Acgnocto.psm1` (since it used the octopus icon). You are welcome to download this file and place it your theme directory in `Oh-My-Posh`. This will likely be located at:
+    https://www.nerdfonts.com/font-downloads
 
-    %USERPROFILE%\Documents\PowerShell\Modules\oh-my-posh\2.0.412\Themes
+Customize your windows terminal
 
-#### And thats it!
 
-## Git Bash
+## Bash installations
 
-My git bash setup relies on having `~/.bashrc` and `~/.bash_profile` located in the home directory. These will each reference the version found in `.SettingsAndConfigurations`. e.g.:
+My bash setup relies on having `~/.bashrc` and `~/.bash_profile` located in the home directory. These will each reference the version found in `.SettingsAndConfigurations`. e.g.:
 
 // ~/.bashrc
 
