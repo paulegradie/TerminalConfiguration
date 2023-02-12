@@ -13,6 +13,7 @@ function ...... { Set-Location ../../../../.. }
 ######### Octopus location aliases #############
 set-location "$USER\code\octopus\OctopusDeploy"
 function od { Set-Location "$USER\code\octopus\OctopusDeploy" }
+function sm { Set-Location "$USER\code\octopus\SeaMonkey" }
 function portal { Set-Location "$USER\code\octopus\OctopusDeploy\newportal" }
 function oct { Set-Location "$USER\code\octopus\" }
 function perf { Set-Location "$USER\code\octopus\CorePlatformServices"}

@@ -2,6 +2,11 @@
 
 This repository holds my powershell and bash profiles.
 
+## Extra
+
+Set code to be the default rebase editor
+
+```git config --global core.editor "code --wait"```
 
 ## Windows Installation
 
