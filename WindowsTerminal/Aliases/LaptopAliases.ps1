@@ -11,17 +11,22 @@ function ...... { Set-Location ../../../../.. }
 
 
 ######### Octopus location aliases #############
-set-location "$USER\code\octopus\OctopusDeploy"
-function od { Set-Location "$USER\code\octopus\OctopusDeploy" }
-function sm { Set-Location "$USER\code\octopus\SeaMonkey" }
-function portal { Set-Location "$USER\code\octopus\OctopusDeploy\newportal" }
-function oct { Set-Location "$USER\code\octopus\" }
-function perf { Set-Location "$USER\code\octopus\CorePlatformServices"}
-function bouncer { ServiceBouncer.exe }
-function prep { npm i --no-save }
-function cli { Set-Location "$USER\code\octopus\OctopusCLI" }
+try {
 
-
+    set-location "$USER\code\octopus\OctopusDeploy"
+    function od { Set-Location "$USER\code\octopus\OctopusDeploy" }
+    function portal { Set-Location "$USER\code\octopus\OctopusDeploy\newportal" }
+    function oct { Set-Location "$USER\code\octopus\" }
+    function perf { Set-Location "$USER\code\octopus\CorePlatformServices" }
+    function bouncer { ServiceBouncer.exe }
+    function prep { npm i --no-save }
+    function cli { Set-Location "$USER\code\octopus\OctopusCLI" }
+}
+catch {
+    // do nothing
+}
+    
+    
 ############# Personal Location Aliases
 $SERVER = "$USER\code\palavyr\Palavyr\server";
 $PORT = "$USER\code\palavyr\Palavyr\ui";
