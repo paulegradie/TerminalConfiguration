@@ -31,9 +31,7 @@ I use this to quickly set up my terminal between machines.
 
     This is for supporting Oh-My-Posh themes ( you may need to go to your windows > Settings > Fonts - and install there).
 
-1. Finally, run `setup.ps1`` and restart Windows Terminal
-
-
+1. Finally, run `setup.ps1` from the `WindowsTerminal` directory and restart Windows Terminal
 
 
 ## Non-Windows Installation
