@@ -2,6 +2,13 @@
 
 This repository holds my powershell and bash profiles.
 
+## Getting Started
+
+First, clone this repository to your location of choice.
+
+ - Be sure to modify Aliases and Functions to your liking. These currently hold impls specific to my setup.
+
+
 ## Extra
 
 Set code to be the default rebase editor
@@ -68,8 +75,7 @@ git clone git@github.com:paulegradie/SettingsAndConfigurations.git $USER/.Settin
 
     https://www.nerdfonts.com/font-downloads
 
-Customize your windows terminal
-
+11. Finally, Run setup.ps1 and restart Windows Terminal
 
 ## Bash installations
 

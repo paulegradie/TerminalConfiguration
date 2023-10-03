@@ -3,13 +3,13 @@ $USER = $env:USERPROFILE;
 function refresh {
 
     if ($env:COMPUTERNAME -eq "RegEx") {
-        $Location1 = "$USER\Documents\code\octopus\OctopusDeploy"
-        $Location2 = "$USER\Documents\code\octopus\OctopusDeploy\newportal"
+        $Location1 = "D:\code\octopus\OctopusDeploy"
+        $Location2 = "D:\code\octopus\OctopusDeployt\frontend"
     }
     else {
         # laptop
-        $Location1 = "D:\code\octopus\OctopusDeploy"
-        $Location2 = "D:\code\octopus\OctopusDeployt\newportal"
+        $Location1 = "$USER\Documents\code\octopus\OctopusDeploy"
+        $Location2 = "$USER\Documents\code\octopus\OctopusDeploy\frontend"
     }
 
     Set-Location $Location1
