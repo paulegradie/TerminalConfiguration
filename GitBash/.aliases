@@ -29,7 +29,7 @@ alias sadd='sh ~/.setup_scripts/add_ids.sh'
 alias py="ipython"
 
 # Settings and Configuration
-alias settings='cd ${HOME}/.SettingsAndConfigurations'
+alias settings='cd ${HOME}/TerminalConfiguration'
 
 # ______________________________________SPECIFIC_________________________________________ #
 

@@ -71,8 +71,8 @@ source "$BASH_IT"/bash_it.sh
 echo "BashRC sourced"
 
 ## Custom additions below
-source ~/.SettingsAndConfigurations/GitBash/.aliases
-source ~/.SettingsAndConfigurations/GitBash/.functions
+source ~/TerminalConfiguration/GitBash/.aliases
+source ~/TerminalConfiguration/GitBash/.functions
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
