@@ -8,8 +8,8 @@ function refresh {
     }
     else {
         # laptop
-        $Location1 = "$USER\Documents\code\octopus\OctopusDeploy"
-        $Location2 = "$USER\Documents\code\octopus\OctopusDeploy\frontend"
+        $Location1 = "$USER\code\octopus\OctopusDeploy"
+        $Location2 = "$USER\code\octopus\OctopusDeploy\frontend"
     }
 
     Set-Location $Location1
