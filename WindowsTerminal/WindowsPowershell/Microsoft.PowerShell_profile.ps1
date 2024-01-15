@@ -32,8 +32,5 @@ $configBase = Join-Path $GrandParentDir "PoshConfigs"
 # oh-my-posh init pwsh --config (Join-Path $configBase "illusion.json") | Invoke-Expression
 oh-my-posh init pwsh --config (Join-Path $configBase "material.json") | Invoke-Expression
 
-
-
-# Navigate to the 'code' directory within the user's home directory
-$codeDirectory = Join-Path $env:USERPROFILE "code"
-Set-Location $codeDirectory
+# Navigate to the 'code' directory within the user's home directory or custom directory if specified
+Set-Location "G:\code\"

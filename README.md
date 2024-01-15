@@ -12,7 +12,10 @@ I use this to quickly set up my terminal between machines.
     git clone git@github.com:paulegradie/TerminalConfiguration.git
 ```
 
-1. [Install Oh-My-Posh](https://ohmyposh.dev/docs/installation/windows) (via the Windows Store)
+1. [Install Oh-My-Posh](https://ohmyposh.dev/docs/installation/windows) (via the Windows Store) or run:
+
+
+    `Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))`
 
 
 1. Set your execution privelages (Run As Admin plz)
