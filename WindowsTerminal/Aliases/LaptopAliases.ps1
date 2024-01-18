@@ -11,10 +11,10 @@ function ...... { Set-Location ../../../../.. }
 
 
 ######### Octopus location aliases #############
-    
-    
+
+
 ############# Personal Location Aliases
-$SAILFISH = "$USER\code\Sailfish";
+$SAILFISH = "G:\code\Sailfish\";
 function sail { Set-Location $SAILFISH }
 
 # function startup {
