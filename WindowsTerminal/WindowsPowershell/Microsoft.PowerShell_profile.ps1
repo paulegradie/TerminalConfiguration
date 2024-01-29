@@ -11,7 +11,7 @@ $GrandParentDir = Split-Path -Parent (Split-Path -Parent $CurrentUserCurrentHost
 . (Join-Path $GrandParentDir "Aliases\GitAliases.ps1")
 
 # Conditionally load aliases based on computer name
-if ($env:COMPUTERNAME -match "RegEx") {
+if ($env:COMPUTERNAME -match "Paul") {
     . (Join-Path $GrandParentDir "Aliases\DesktopAliases.ps1")
 }
 else {
@@ -33,4 +33,20 @@ $configBase = Join-Path $GrandParentDir "PoshConfigs"
 oh-my-posh init pwsh --config (Join-Path $configBase "material.json") | Invoke-Expression
 
 # Navigate to the 'code' directory within the user's home directory or custom directory if specified
-Set-Location "G:\code\"
+
+
+if ($env:COMPUTERNAME -match "Paul") {
+    Set-Location "G:\code\"
+}
+else {
+    Set-Location "C:\Users\paule\code"
+}
+# Import the Chocolatey Profile that contains the necessary code to enable
+# tab-completions to function for `choco`.
+# Be aware that if you are missing these lines from your profile, tab completion
+# for `choco` will not function.
+# See https://ch0.co/tab-completion for details.
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
