@@ -1,10 +1,8 @@
-$GDRIVE = "G:"
-
 function home { Set-Location "G:\code\" }
 
 ############# Personal Location Aliases
-$SAILFISH = "$GDRIVE\code\Sailfish";
-
+$SAILFISH = "G:\code\Sailfish\";
+function sail { Set-Location $SAILFISH }
 
 
 # function startup {
