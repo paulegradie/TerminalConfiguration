@@ -77,6 +77,8 @@ Typically on terminal startup, the terminal will source your `.bashrc`, which wi
     ```bash
         cd ~
         mkdir .ssh
+        cd .ssh
+        ssh-keygen
         code .ssh/config
     ```
 
@@ -90,8 +92,9 @@ Typically on terminal startup, the terminal will source your `.bashrc`, which wi
         Host github.com
         HostName github.com
         User git
-        IdentityFile ~/.ssh/{key_name}_id_rsa
+        IdentityFile ~/.ssh/id_rsa
     ```
+1. Go add the key to your github ssh key settings
 
 ## Misc
 

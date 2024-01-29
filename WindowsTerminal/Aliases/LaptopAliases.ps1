@@ -1,7 +1,6 @@
 ## In powershell, my current understanding is that I need
 ## use functions to assign aliases.
 
-$USER = $env:USERPROFILE;
 ###### General Nav Helpers ##########
 function .. { Set-Location .. }
 function ... { Set-Location ../.. }
@@ -14,7 +13,7 @@ function ...... { Set-Location ../../../../.. }
 
 
 ############# Personal Location Aliases
-$SAILFISH = "G:\code\Sailfish\";
+$SAILFISH = "C:\Users\paule\code\Sailfish\";
 function sail { Set-Location $SAILFISH }
 
 # function startup {
