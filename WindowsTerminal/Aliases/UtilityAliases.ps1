@@ -14,14 +14,9 @@ catch {
 }
 
 function settings {
-    # Get the Current User Current Host profile path
-    $CurrentUserCurrentHost = ($profile | Select-Object -Property CurrentUserCurrentHost).CurrentUserCurrentHost
-
-    # Get the parent of the parent directory of the current profile path
-    $GrandParentDir = Split-Path -Parent (Split-Path -Parent $CurrentUserCurrentHost)
-
-    # Get parent dir of the Windows Terminal Dir (the settings dir)
-    Set-Location (Split-Path -Parent $GrandParentDir)
+    # Go to the root of the TerminalConfiguration repo
+    $SettingsRepoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+    Set-Location $SettingsRepoRoot
 }
 
 function prof { code $PROFILE.CurrentUserCurrentHost }
