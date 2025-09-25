@@ -18,14 +18,7 @@ function gcm {
     $branchName = git rev-parse --abbrev-ref HEAD
     if ($branchName -match "^(\d+)-[a-zA-Z0-9\-]+") {
         $number = [int]$matches[1]
-
-        if ($number -lt 10000) {
-            $prefix = "PLA-$number"
-        }
-        else {
-            $prefix = "AB#$number"
-        }
-
+        $prefix = "PLA-$number"
         $prefixedMessage = "$prefix $commitMessage"
         git commit -m $prefixedMessage
     }
