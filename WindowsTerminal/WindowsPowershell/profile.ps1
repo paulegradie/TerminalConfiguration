@@ -9,7 +9,8 @@ $BaseDir = Split-Path -Parent $PSScriptRoot
 # Conditional aliases based on machine name
 if ($env:COMPUTERNAME -match "Paul") {
     . (Join-Path $BaseDir "Aliases\DesktopAliases.ps1")
-} else {
+}
+else {
     . (Join-Path $BaseDir "Aliases\LaptopAliases.ps1")
 }
 
@@ -19,12 +20,8 @@ if ($env:COMPUTERNAME -match "Paul") {
 $configBase = Join-Path $BaseDir "PoshConfigs"
 oh-my-posh init pwsh --config (Join-Path $configBase "material.json") | Invoke-Expression
 
-# Set working directory - customize this as you please
-if ($env:COMPUTERNAME -match "Paul") {
-    Set-Location "G:\code\"
-} else {
-    Set-Location "$HOME\code"
-}
+# Intentionally do not force a working directory.
+# Let the host (IDE/terminal) decide the startup location.
 
 # Chocolatey tab completion
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
