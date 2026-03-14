@@ -1,11 +1,11 @@
 function home { Set-Location "G:\code\" }
 
 ############# Personal Location Aliases
-$SAILFISH = "G:\code\Sailfish\";
-function sail { Set-Location $SAILFISH }
-
-
-# just for reference on how to create multiple panes if you need to
-# function startup {
-#     wt --title "Palavyr" -d $PORT `; split-pane --title "PDF Service" -d $PDF `; split-pane -H -d $WIDGET
-# }
+function sail { Set-Location "G:\code\OpenSource\Sailfish" }
+function launch { Set-Location "G:\code\Launch11Projects" }
+function party { Set-Location "G:\code\Launch11Projects\Coin-Party" }
+function foreman { Set-Location "G:\code\Launch11Projects\Foreman" }
+function sayr { Set-Location "G:\code\Launch11Projects\Sayr" }
+function writr { Set-Location "G:\code\Launch11Projects\Writr" }
+function siftr { Set-Location "G:\code\Launch11Projects\Siftr" }
+function renaym { Set-Location "G:\code\Launch11Projects\Renaym" }
