@@ -9,3 +9,4 @@ function sayr { Set-Location "G:\code\Launch11Projects\Sayr" }
 function writr { Set-Location "G:\code\Launch11Projects\Writr" }
 function siftr { Set-Location "G:\code\Launch11Projects\Siftr" }
 function renaym { Set-Location "G:\code\Launch11Projects\Renaym" }
+function research { Set-Location "G:\code\OpenSource\GradieResearch" }
