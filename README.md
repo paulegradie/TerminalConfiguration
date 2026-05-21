@@ -141,52 +141,76 @@ the personal identity even though the system default key is the work one.
 
 ## Multi-identity convention (directory-based)
 
-For *other* personal repos (everything beyond this one), the convention is
-directory-based via `includeIf` in `~/.gitconfig`. Anything under
-`~/code/personal/` automatically uses the personal identity + personal SSH key.
-Everything else falls back to the machine's default `[user]` block (work
-identity on a work machine).
+Repos are bucketed by directory. The right identity + SSH key is selected
+automatically based on where the repo lives:
+
+| Directory             | Identity                                  | SSH key                          |
+| --------------------- | ----------------------------------------- | -------------------------------- |
+| `~/code/personal/`    | `Paul Gradie <paul.e.gradie@gmail.com>`   | `~/.ssh/id_ed25519_personal`     |
+| `~/code/work/`        | `Paul Gradie <paul@tilt.com>`             | `~/.ssh/id_ed25519`              |
+| anywhere else         | falls back to the global `[user]` (work)  | default per `~/.ssh/config`      |
+
+No per-repo `git config` calls. No env vars. The directory location is the
+entire signal — including during the initial `git clone`, because the include
+is evaluated as soon as git initialises the repo's gitdir.
 
 ### How it's wired
 
-`~/.gitconfig` contains:
+`~/.gitconfig`:
 
 ```ini
 [user]
     name = Paul Gradie
-    email = paul@tilt.com        # work, default
+    email = paul@tilt.com        # work, also the safe default
 [includeIf "gitdir:~/code/personal/"]
     path = ~/.gitconfig-personal
+[includeIf "gitdir:~/code/work/"]
+    path = ~/.gitconfig-work
 ```
 
-`~/.gitconfig-personal` contains:
+`~/.gitconfig-personal`:
 
 ```ini
 [user]
     name = Paul Gradie
     email = paul.e.gradie@gmail.com
 [core]
-    sshCommand = ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes
+    # IdentityAgent=none keeps the agent's work key from being offered first
+    # (the agent typically holds id_ed25519 = work, and ~/.ssh/config also
+    # pins id_ed25519 for github.com — without this we'd auth as the work
+    # account when pushing personal repos).
+    sshCommand = ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes -o IdentityAgent=none
 ```
 
-The trailing slash on `gitdir:~/code/personal/` is required — it means "this
-directory and anything inside it." The include fires when git resolves config
-for a repo whose `.git/` directory is below that path, so both the identity and
-the SSH command are picked up automatically — *including for the initial
-`git clone`*, because the include is evaluated as soon as git initialises the
-repo's gitdir.
+`~/.gitconfig-work`:
 
-### Cloning a personal repo
+```ini
+[user]
+    name = Paul Gradie
+    email = paul@tilt.com
+[core]
+    # No IdentityAgent=none here — the agent has the work key loaded, which
+    # is what we want. IdentitiesOnly=yes just makes the key choice explicit.
+    sshCommand = ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes
+```
+
+The trailing slash on each `gitdir:` pattern is required — it means "this
+directory and anything inside it." First match wins, but in this layout the
+two buckets are disjoint, so order doesn't matter.
+
+### Cloning a repo into the right bucket
 
 ```bash
+# Personal
 cd ~/code/personal
 git clone git@github.com:paulegradie/Sailfish.git
-cd Sailfish
-git config user.email   # → paul.e.gradie@gmail.com
-```
+cd Sailfish && git config user.email   # → paul.e.gradie@gmail.com
 
-No flags, no env vars, no per-repo `git config` calls. The directory location
-is the entire signal.
+# Work
+cd ~/code/work
+git clone git@github.com:tilt-platform/empower-app.git
+cd empower-app && git config user.email   # → paul@tilt.com
+```
 
 ### Adding a new "identity bucket"
 

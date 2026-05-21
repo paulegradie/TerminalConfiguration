@@ -103,9 +103,9 @@ alias c.='code .'
 alias lsa='eza -lah --icons=auto'
 alias home='cd "$HOME/code"'
 # Tilt Prompt Library Plugins shortcut
-alias plib='cd "/Users/paul/code/tilt/TiltPromptLibraryPlugins"'
+alias plib='cd "$HOME/code/work/TiltPromptLibraryPlugins"'
 # Tilt empower app shortcut
-alias tilt='cd "$HOME/code/tilt/empower-app"'
+alias tilt='cd "$HOME/code/work/empower-app"'
 
 
 
