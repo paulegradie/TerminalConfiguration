@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+# Enforce personal git identity on this repo.
+# Activated by: git config core.hooksPath .githooks (run setup-unix.sh / setup.ps1).
+
+EXPECTED_NAME="Paul Gradie"
+EXPECTED_EMAIL="paul.e.gradie@gmail.com"
+
+ident="$(git var GIT_AUTHOR_IDENT 2>/dev/null)"
+name="$(printf '%s' "$ident" | sed -E 's/ <[^>]*> [0-9]+ [+-][0-9]+$//')"
+email="$(printf '%s' "$ident" | sed -E 's/.*<([^>]*)>.*/\1/')"
+
+if [ "$name" = "$EXPECTED_NAME" ] && [ "$email" = "$EXPECTED_EMAIL" ]; then
+  exit 0
+fi
+
+printf '\033[1;31m[pre-commit] Commit blocked: author identity mismatch.\033[0m\n' >&2
+printf '  Got:      %s <%s>\n' "$name" "$email" >&2
+printf '  Expected: %s <%s>\n' "$EXPECTED_NAME" "$EXPECTED_EMAIL" >&2
+printf '\nFix with:\n' >&2
+printf '  git config user.name "%s"\n' "$EXPECTED_NAME" >&2
+printf '  git config user.email "%s"\n' "$EXPECTED_EMAIL" >&2
+printf '\nOr re-run the repo setup script (setup-unix.sh / setup-windows.ps1).\n' >&2
+exit 1
