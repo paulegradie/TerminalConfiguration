@@ -54,9 +54,11 @@ if ([string]::IsNullOrWhiteSpace($ProfileContent) -or
 # 5. Pin personal identity + activate versioned pre-commit hook for this repo.
 #    Routes ssh through a personal key so the work machine can't push as work identity.
 $RepoRoot = Split-Path -Parent $ScriptDirectory
+$PersonalRoot = Split-Path -Parent $RepoRoot
 $ExpectedName = "Paul Gradie"
 $ExpectedEmail = "paul.e.gradie@gmail.com"
 $PersonalKey = Join-Path $HOME ".ssh\id_ed25519_personal"
+$PersonalGitConfig = Join-Path $HOME ".gitconfig-personal"
 
 Write-Host ""
 Write-Host "Configuring local git identity and hooks for this repo..."
@@ -73,6 +75,26 @@ if (Test-Path $PersonalKey) {
     Write-Warning "Generate one and add the .pub to your personal GitHub, then re-run this script:"
     Write-Warning "  ssh-keygen -t ed25519 -C `"$ExpectedEmail`" -f `"$PersonalKey`""
     git -C $RepoRoot config --local --unset core.sshCommand 2>$null
+}
+
+# 6. Configure directory-based identity for every repo under the personal root.
+#    This is what makes sibling repos inherit the personal author/SSH key without
+#    writing repo-local config in each clone.
+$personalRootForGit = ($PersonalRoot -replace '\\', '/').TrimEnd('/') + '/'
+$personalGitConfigForGit = $PersonalGitConfig -replace '\\', '/'
+$personalIncludeKey = "includeIf.gitdir/i:$personalRootForGit.path"
+
+Write-Host ""
+Write-Host "Configuring personal git identity bucket for $PersonalRoot..."
+git config --global $personalIncludeKey $personalGitConfigForGit
+git config --file $PersonalGitConfig user.name $ExpectedName
+git config --file $PersonalGitConfig user.email $ExpectedEmail
+
+if (Test-Path $PersonalKey) {
+    git config --file $PersonalGitConfig core.sshCommand "ssh -i '$sshKeyForGit' -o IdentitiesOnly=yes -o IdentityAgent=none"
+    Write-Host "Personal repos under $PersonalRoot will use $PersonalKey"
+} else {
+    git config --file $PersonalGitConfig --unset core.sshCommand 2>$null
 }
 
 Write-Host ""

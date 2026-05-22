@@ -198,6 +198,17 @@ The trailing slash on each `gitdir:` pattern is required — it means "this
 directory and anything inside it." First match wins, but in this layout the
 two buckets are disjoint, so order doesn't matter.
 
+On Windows, `setup-windows.ps1` writes the same personal bucket automatically
+using this repo's parent directory. If the repo is cloned at
+`G:\code\personal\TerminalConfiguration`, it registers:
+
+```ini
+[includeIf "gitdir/i:G:/code/personal/"]
+    path = C:/Users/paule/.gitconfig-personal
+```
+
+The `gitdir/i:` form makes the Windows path match case-insensitively.
+
 ### Cloning a repo into the right bucket
 
 ```bash
