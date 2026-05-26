@@ -33,6 +33,12 @@ unset __tc_root
 if [ -d "/opt/homebrew/bin" ]; then export PATH="/opt/homebrew/bin:$PATH"; fi
 if [ -d "/usr/local/bin" ]; then export PATH="/usr/local/bin:$PATH"; fi
 
+# .NET (prefer Microsoft installer at /usr/local/share/dotnet over Homebrew's copy)
+if [ -d "/usr/local/share/dotnet" ]; then
+  export PATH="/usr/local/share/dotnet:$PATH"
+  export DOTNET_ROOT="/usr/local/share/dotnet"
+fi
+
 # nvm (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"           # This loads nvm

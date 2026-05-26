@@ -118,3 +118,14 @@ prof() {
   fi
 }
 
+# GitHub identity routing. The wrapper defines a `gh` shell function
+# that picks the right token from Common/gh-identity.local based on
+# the current repo's `origin` owner. See gh-identity.local.template
+# for setup.
+__TC_GH_WRAPPER="${TC_REPO_ROOT:-$HOME/code/personal/TerminalConfiguration}/Common/gh-wrapper.sh"
+if [ -f "$__TC_GH_WRAPPER" ]; then
+  # shellcheck disable=SC1090
+  . "$__TC_GH_WRAPPER"
+fi
+unset __TC_GH_WRAPPER
+

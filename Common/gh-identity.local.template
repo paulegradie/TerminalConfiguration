@@ -1,0 +1,48 @@
+# TerminalConfiguration — GitHub identity routing (TEMPLATE).
+#
+# 1. Copy this file to `gh-identity.local` in the same directory:
+#       cp Common/gh-identity.local.template Common/gh-identity.local
+#       chmod 600 Common/gh-identity.local
+#    `gh-identity.local` is gitignored — your tokens will not be committed.
+#
+# 2. Generate one Personal Access Token per GitHub account at
+#    https://github.com/settings/tokens (classic or fine-grained, either works).
+#    Recommended scopes: repo, read:org, workflow.
+#
+# 3. Paste each PAT below, then edit tc_gh_route_owner_to_token() to map
+#    GitHub owners (orgs or users) to the right token.
+#
+# After you save the file, open a new shell (or `exec $SHELL -l`) and test:
+#     cd ~/code/personal/<some-paulegradie-repo>
+#     TC_GH_DEBUG=1 gh auth status   # should report you're paulegradie
+#     cd ~/code/work/<some-tilt-repo>
+#     TC_GH_DEBUG=1 gh auth status   # should report you're tiltPaul
+
+# ─── Tokens ───────────────────────────────────────────────────────────
+# Replace these placeholders with real PATs. Leave any you don't need.
+GH_TOKEN_PERSONAL="REPLACE_ME_with_personal_PAT"     # e.g. paulegradie
+GH_TOKEN_WORK="REPLACE_ME_with_work_PAT"             # e.g. tiltPaul
+
+# ─── Owner → token routing ────────────────────────────────────────────
+# Called by gh-wrapper.sh on every `gh` invocation. $1 is the GitHub
+# owner parsed from the cwd's `origin` remote (empty if cwd is not a
+# git repo or has no origin).
+#
+# Add cases as you accumulate accounts/orgs. First matching case wins.
+# The trailing `*)` is the fallback (used when cwd has no git origin
+# or when the owner doesn't match any case above).
+tc_gh_route_owner_to_token() {
+  case "$1" in
+    paulegradie)
+      printf '%s' "$GH_TOKEN_PERSONAL"
+      ;;
+    empowerfinance|tilt-platform|tilt-engineering)
+      printf '%s' "$GH_TOKEN_WORK"
+      ;;
+    *)
+      # Default identity. Set this to whichever account you'd rather
+      # accidentally use when there's no specific match — typically work.
+      printf '%s' "$GH_TOKEN_WORK"
+      ;;
+  esac
+}

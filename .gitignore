@@ -6,3 +6,6 @@ WindowsTerminal/Zoom*
 WindowsTerminal/desktop.ini
 WindowsTerminal/Throttle*
 *DS_Store*
+
+# Local secrets — see Common/gh-identity.local.template for setup
+Common/gh-identity.local
