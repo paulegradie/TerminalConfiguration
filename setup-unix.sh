@@ -359,6 +359,21 @@ main() {
     "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-bash --no-fish --no-update-rc || true
   fi
 
+  # GitHub identity routing — remind the user to seed the local secrets
+  # file if they haven't yet. The `gh` wrapper in Common/gh-wrapper.sh
+  # falls through to default gh auth without this, so the warning is
+  # informational, not blocking.
+  GH_IDENTITY_FILE="$REPO_ROOT/Common/gh-identity.local"
+  GH_IDENTITY_TEMPLATE="$REPO_ROOT/Common/gh-identity.local.template"
+  if [[ ! -f "$GH_IDENTITY_FILE" && -f "$GH_IDENTITY_TEMPLATE" ]]; then
+    warn "No Common/gh-identity.local found. The gh wrapper will fall back to"
+    warn "the currently-active 'gh auth login' account for every repo."
+    warn "To set up per-repo identity routing:"
+    warn "  cp Common/gh-identity.local.template Common/gh-identity.local"
+    warn "  chmod 600 Common/gh-identity.local"
+    warn "  # then edit it and paste your PATs"
+  fi
+
   say "Done! Next steps:"
   echo "- For bash: source \"$BASHRC\" or \"$BASH_PROFILE\" (depending on your login shell)"
 

@@ -273,6 +273,66 @@ re-emitting fresh ones from the new location, so the move is idempotent — you
 won't end up with duplicate `source` or `settings` definitions pointing at the
 old path.
 
+## GitHub CLI identity routing
+
+The `gh` CLI keeps one "active" account at a time, but most of us have
+at least two GitHub identities (personal + work). Without help you'd
+have to `gh auth switch` every time you change repos, which nobody
+actually does — so PR creation silently uses the wrong account.
+
+This repo ships a `gh` shell-function wrapper that picks the right
+token per call based on the cwd's `origin` owner. No state mutation,
+no manual switching.
+
+### Setup (one-time per machine)
+
+1. Generate one PAT per GitHub account at
+   <https://github.com/settings/tokens> with scopes `repo`, `read:org`,
+   `workflow`. (Classic or fine-grained, either works.)
+
+2. From the repo root:
+
+   ```bash
+   cp Common/gh-identity.local.template Common/gh-identity.local
+   chmod 600 Common/gh-identity.local
+   ```
+
+3. Edit `Common/gh-identity.local`, paste your PATs into
+   `GH_TOKEN_PERSONAL` / `GH_TOKEN_WORK`, and extend the
+   `tc_gh_route_owner_to_token` case block with any other owners/orgs
+   you care about. The trailing `*)` case is the fallback for repos
+   whose owner you haven't explicitly mapped (and for cwds outside any
+   git repo).
+
+4. Open a new shell (or `exec $SHELL -l`) and verify:
+
+   ```bash
+   cd ~/code/personal/<any-personal-repo>
+   TC_GH_DEBUG=1 gh auth status      # routed to personal token
+   cd ~/code/work/<any-work-repo>
+   TC_GH_DEBUG=1 gh auth status      # routed to work token
+   ```
+
+`Common/gh-identity.local` is `.gitignore`d — your tokens never get
+committed.
+
+### Escape hatches
+
+```bash
+GH_TOKEN_OVERRIDE=$GH_TOKEN_PERSONAL gh ...   # force one-off identity
+TC_GH_DEBUG=1 gh ...                          # print routing decision
+```
+
+### How it works
+
+`Common/gh-wrapper.sh` defines a `gh` shell function that, on every
+invocation, sources `gh-identity.local`, reads
+`git remote get-url origin`, calls your `tc_gh_route_owner_to_token`,
+and runs the real `gh` with `GH_TOKEN=<that token>` for just that one
+call. If `gh-identity.local` is missing or unreadable, the wrapper
+falls through to whatever account `gh auth login` set up — nothing
+breaks, you just don't get auto-routing.
+
 ## Misc
 
 Set code to be the default rebase editor
